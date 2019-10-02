@@ -64,7 +64,9 @@ jobs:
     needs: test
     steps:
       - uses: actions/checkout@v1
-      - uses: ./
+
+      - name: Run integration test
+        uses: ./
         with:
           dockerfile: testdata/Dockerfile
 
