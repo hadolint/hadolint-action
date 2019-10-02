@@ -1,0 +1,12 @@
+- repo: local
+  hooks:
+    - id: lint-dockerfile
+      name: Lint Dockerfile
+      entry: make lint-dockerfile
+      language: system
+      files: \.yml$
+    - id: lint-yaml
+      name: Lint YAML
+      entry: make lint-yaml
+      language: system
+      files: \.yml$

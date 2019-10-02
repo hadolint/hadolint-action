@@ -1,0 +1,8 @@
+schemaVersion: 2.0.0
+
+commandTests:
+  - name: "Check hadolint is installed"
+    command: hadolint
+    args: ['-v']
+    expectedOutput: ["Haskell Dockerfile Linter"]
+    exitCode: 0

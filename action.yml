@@ -1,0 +1,15 @@
+name: 'Hadolint'
+description: 'Action that runs Hadolint Dockerfile linting tool'
+author: 'Bruno Paz'
+inputs:
+  dockerfile:
+    description: 'The path to the Dockerfile to lint'
+    default: 'Dockerfile'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.dockerfile }}
+branding:
+  icon: 'layers'
+  color: 'purple'
