@@ -72,7 +72,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     name: Release
     runs-on: ubuntu-latest
-    needs: integraiton
+    needs: integration
     steps:
       - uses: actions/checkout@v1
       - name: Semantic Release
