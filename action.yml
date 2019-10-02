@@ -1,4 +1,4 @@
-name: 'Hadolint'
+name: 'Hadolint Action'
 description: 'Action that runs Hadolint Dockerfile linting tool'
 author: 'Bruno Paz'
 inputs:
