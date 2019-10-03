@@ -1,4 +1,4 @@
-# hadolint-action Action
+# Hadolint GitHub Action
 
 > Action that runs [Hadolint](https://github.com/hadolint/hadolint) Dockerfile linting tool.
 
