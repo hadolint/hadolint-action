@@ -36,6 +36,7 @@ Contributions are what make the open source community such an amazing place to b
 
 * [Building actions - GitHub Help](https://help.github.com/en/articles/building-actions)
 * [actions/toolkit: The GitHub ToolKit for developing GitHub Actions.](https://github.com/actions/toolkit)
+* [Dockerfile Linter action](https://github.com/buddy-works/dockerfile-linter)
 
 ## Author
 
