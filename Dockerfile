@@ -1,4 +1,4 @@
-FROM hadolint/hadolint:v1.17.5-alpine
+FROM hadolint/hadolint:v1.18.0-alpine
 
 COPY LICENSE README.md /
 
