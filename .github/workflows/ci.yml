@@ -47,7 +47,7 @@ jobs:
           name: action-image
 
       - name: Load image into docker context
-        run: docker load -i action-image/action.tar
+        run: docker load -i action.tar
 
       - name: Get Image Name
         id: image_name
