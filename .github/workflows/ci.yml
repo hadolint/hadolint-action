@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     container: pipelinecomponents/hadolint:latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2.3.4
       - name: Run hadolint
         run: hadolint Dockerfile
 
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: ['lint']
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2.3.4
       - name: Build Docker image
         run: docker build -t $TEST_IMAGE_NAME .
 
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2.3.4
 
       - name: Pull Image artifact
         uses: actions/download-artifact@master
@@ -63,7 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2.3.4
 
       - name: Run integration test
         uses: ./
@@ -76,7 +76,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: integration
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2.3.4
       - name: Semantic Release
         uses: brpaz/action-semantic-release@master
         env:
