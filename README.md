@@ -41,12 +41,6 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## Useful Resources
-
-* [Building actions - GitHub Help](https://help.github.com/en/articles/building-actions)
-* [actions/toolkit: The GitHub ToolKit for developing GitHub Actions.](https://github.com/actions/toolkit)
-
-
 ## 💛 Support the project
 
 If this project was useful to you in some form, I would be glad to have your support.  It will help to keep the project alive and to have more time to work on Open Source.
