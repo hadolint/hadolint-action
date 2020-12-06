@@ -10,8 +10,9 @@ env:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
-    container: pipelinecomponents/hadolint:latest
+    name: Lint
+    runs-on: ubuntu-20.04
+    container: pipelinecomponents/hadolint:0.10.1
     steps:
       - uses: actions/checkout@v2
       - name: Run hadolint
@@ -19,7 +20,7 @@ jobs:
 
   build-test:
     name: Build and Test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs: ["lint"]
     steps:
       - uses: actions/checkout@v2
@@ -33,7 +34,7 @@ jobs:
 
   integration-tests:
     name: Integration Tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs: build-test
     steps:
       - uses: actions/checkout@v2
@@ -46,7 +47,7 @@ jobs:
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     name: Release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs: integration-tests
     steps:
       - uses: actions/checkout@v2
