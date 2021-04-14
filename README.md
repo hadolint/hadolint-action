@@ -7,7 +7,7 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=for-the-badge)](http://commitizen.github.io/cz-cli/)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=for-the-badge)](https://github.com/semantic-release/semantic-release?style=for-the-badge)
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/brpaz/hadolint-action/CI?style=for-the-badge)](https://github.com/brpaz/hadolint-action/action)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/hadolint/hadolint-action/CI?style=for-the-badge)](https://github.com/hadolint/hadolint-action/action)
 
 ## Usage
 
@@ -15,7 +15,7 @@ Add the following step to your workflow configuration:
 
 ```yml
 steps:
-    - uses: brpaz/hadolint-action@v1.2.1
+    - uses: hadolint/hadolint-action@v1.3.1
       with:
         dockerfile: Dockerfile
 ```
