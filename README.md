@@ -15,7 +15,7 @@ Add the following step to your workflow configuration:
 
 ```yml
 steps:
-    - uses: hadolint/hadolint-action@v1.3.1
+    - uses: hadolint/hadolint-action@v1.4.0
       with:
         dockerfile: Dockerfile
 ```
