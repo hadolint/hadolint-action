@@ -39,10 +39,41 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run integration test
+      - name: Run integration test 1
         uses: ./
         with:
           dockerfile: testdata/Dockerfile
+
+      - name: Run integration test 2 - ignore a rule
+        # This step is supposed to print out an info level rule violation
+        # but completely ignore the two rules listed below
+        uses: ./
+        with:
+          dockerfile: testdata/warning.Dockerfile
+          ignore: DL3014 DL3008
+
+      - name: Run integration test 3 - set failure threshold
+        # This step will print out an info level rule violation, but not fail
+        # because of the high failure threshold.
+        uses: ./
+        with:
+          dockerfile: testdata/info.Dockerfile
+          failure-threshold: warning
+
+      - name: Run integration test 4 - output format
+        # This step will never fail, but will print out rule violations as json.
+        uses: ./
+        with:
+          dockerfile: testdata/warning.Dockerfile
+          failure-threshold: error
+          format: json
+
+      - name: Run integration test 4 - output format
+        # This step will never fail, but will print out rule violations.
+        uses: ./
+        with:
+          dockerfile: testdata/warning.Dockerfile
+          config: testdata/hadolint.yaml
 
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'

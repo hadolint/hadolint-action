@@ -19,4 +19,13 @@ trap cleanup EXIT
 
 echo "::add-matcher::${TMP_FOLDER}/problem-matcher.json"
 
-hadolint "$@"
+if [ -n "$HADOLINT_CONFIG" ]; then
+  HADOLINT_CONFIG="-c ${HADOLINT_CONFIG}"
+fi
+
+for i in $HADOLINT_IGNORE; do
+  HADOLINT_IGNORE_CMDLINE="${HADOLINT_IGNORE_CMDLINE} --ignore=${i}"
+done
+
+# shellcheck disable=SC2086
+hadolint $HADOLINT_IGNORE_CMDLINE $HADOLINT_CONFIG "$@"
