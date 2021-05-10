@@ -3,13 +3,42 @@ description: 'Action that runs Hadolint Dockerfile linting tool'
 author: 'Bruno Paz'
 inputs:
   dockerfile:
+    required: false
     description: 'The path to the Dockerfile to lint'
     default: 'Dockerfile'
+  format:
+    required: false
+    description: |
+      The output format, one of [tty (default) | json | checkstyle |
+      codeclimate | gitlab_codeclimate ]
+    default: 'tty'
+  failure-threshold:
+    required: false
+    description: |
+      Fail the pipeline only if rules with severity above this threshold are
+      violated. One of [error | warning | info (default) | style | ignore]
+    default: 'info'
+  ignore:
+    required: false
+    description: 'A space separated string of rules to ignore'
+    default:
+  config:
+    required: false
+    description: 'Path to a config file'
+    default:
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - -f
+    - ${{ inputs.format }}
+    - -t
+    - ${{ inputs.failure-threshold }}
     - ${{ inputs.dockerfile }}
+  env:
+    HADOLINT_CONFIG: ${{ inputs.config }}
+    HADOLINT_IGNORE: ${{ inputs.ignore }}
 branding:
   icon: 'layers'
   color: 'purple'
