@@ -6,6 +6,10 @@ inputs:
     required: false
     description: 'The path to the Dockerfile to lint'
     default: 'Dockerfile'
+  recursive:
+    required: false
+    description: 'Search for lint dockerfiles recuresivly'
+    default: 'false'
   format:
     required: false
     description: |
@@ -39,6 +43,7 @@ runs:
   env:
     HADOLINT_CONFIG: ${{ inputs.config }}
     HADOLINT_IGNORE: ${{ inputs.ignore }}
+    HADOLINT_RECURSIVE: ${{ inputs.recursive }}
 branding:
   icon: 'layers'
   color: 'purple'

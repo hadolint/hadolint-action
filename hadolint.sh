@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # The problem-matcher definition must be present in the repository
 # checkout (outside the Docker container running hadolint). We create
@@ -27,5 +27,14 @@ for i in $HADOLINT_IGNORE; do
   HADOLINT_IGNORE_CMDLINE="${HADOLINT_IGNORE_CMDLINE} --ignore=${i}"
 done
 
-# shellcheck disable=SC2086
-hadolint $HADOLINT_IGNORE_CMDLINE $HADOLINT_CONFIG "$@"
+if [ "$HADOLINT_RECURSIVE" = "true" ]; then
+  shopt -s globstar
+
+  filename="${!#}"
+  flags="${@:1:$#-1}"
+
+  hadolint $HADOLINT_IGNORE_CMDLINE $HADOLINT_CONFIG $flags **/$filename
+else
+  # shellcheck disable=SC2086
+  hadolint $HADOLINT_IGNORE_CMDLINE $HADOLINT_CONFIG "$@"
+fi
