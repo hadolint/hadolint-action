@@ -26,6 +26,8 @@ steps:
 | Name              | Description                               | Default          |
 |------------------ |------------------------------------------ |----------------- |
 | dockerfile        | The path to the Dockerfile to be tested   | ./Dockerfile     |
+| recursive         | Search for specified dockerfile           | false            | 
+|                   | recursively, from the project root        |                  |
 | format            | The output format. One of [tty \| json \| | tty              |
 |                   | checkstyle \| codeclimate \|              |                  |
 |                   | gitlab_codeclimate]                       |                  |
