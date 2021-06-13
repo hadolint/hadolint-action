@@ -26,15 +26,15 @@ steps:
 | Name              | Description                               | Default          |
 |------------------ |------------------------------------------ |----------------- |
 | dockerfile        | The path to the Dockerfile to be tested   | ./Dockerfile     |
-| format            | The output format. One of [tty | json |   | tty              |
-|                   | checkstyle | codeclimate |                |                  |
+| format            | The output format. One of [tty \| json \| | tty              |
+|                   | checkstyle \| codeclimate \|              |                  |
 |                   | gitlab_codeclimate]                       |                  |
 | ignore            | Space separated list of Hadolint rules to | <none>           |
 |                   | ignore.                                   |                  |
 | config            | Custom path to a Hadolint config file     | ./.hadolint.yaml |
 | failure-threshold | Rule severity threshold for pipeline      | info             |
-|                   | failure. One of [error | warning | info | |                  |
-|                   | style | ignore]                           |                  |
+|                   | failure. One of [error \| warning \|      |                  |
+|                   | info \| style \| ignore]                  |                  |
 
 ## Hadolint Configuration
 
