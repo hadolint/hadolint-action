@@ -50,7 +50,7 @@ jobs:
         uses: ./
         with:
           dockerfile: testdata/warning.Dockerfile
-          ignore: DL3014 DL3008
+          ignore: DL3014 DL3008 DL3015
 
       - name: Run integration test 3 - set failure threshold
         # This step will print out an info level rule violation, but not fail
