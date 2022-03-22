@@ -50,7 +50,7 @@ steps:
 |                    | severity                                  |                  |
 | ignore             | Space separated list of Hadolint rules to | <none>           |
 |                    | ignore.                                   |                  |
-| trusted-resgitries | List of urls of trusted registries        |                  |
+| trusted-registries | List of urls of trusted registries        |                  |
 
 ## Hadolint Configuration
 
