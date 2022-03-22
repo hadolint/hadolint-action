@@ -50,7 +50,8 @@ jobs:
         uses: ./
         with:
           dockerfile: testdata/warning.Dockerfile
-          ignore: DL3014 DL3008 DL3015
+          ignore: 'DL3014,DL3008'
+          no-fail: true
 
       - name: Run integration test 3 - set failure threshold
         # This step will print out an info level rule violation, but not fail
@@ -68,12 +69,20 @@ jobs:
           failure-threshold: error
           format: json
 
-      - name: Run integration test 4 - output format
+      - name: Run integration test 5 - output format
         # This step will never fail, but will print out rule violations.
         uses: ./
         with:
           dockerfile: testdata/warning.Dockerfile
           config: testdata/hadolint.yaml
+
+      - name: Run integration test 6 - output to file
+        # This step will never fail, but will print out rule violations.
+        uses: ./
+        with:
+          dockerfile: testdata/warning.Dockerfile
+          format: sarif
+          output-file: /report.sarif
 
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
