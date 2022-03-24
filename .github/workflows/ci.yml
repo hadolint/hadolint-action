@@ -43,7 +43,6 @@ jobs:
         uses: ./
         with:
           dockerfile: testdata/Dockerfile
-          no-fail: true
 
       - name: Run integration test 2 - ignore a rule
         # This step is supposed to print out an info level rule violation
