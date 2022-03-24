@@ -19,6 +19,10 @@ if [ -n "$HADOLINT_CONFIG" ]; then
   HADOLINT_CONFIG="-c ${HADOLINT_CONFIG}"
 fi
 
+if [ -z "$HADOLINT_TRUSTED_REGISTRIES" ]; then
+  unset HADOLINT_TRUSTED_REGISTRIES;
+fi
+
 OUTPUT=
 if [ -n "$HADOLINT_OUTPUT" ]; then
   if [ -f "$HADOLINT_OUTPUT" ]; then
