@@ -76,13 +76,13 @@ jobs:
           dockerfile: testdata/warning.Dockerfile
           config: testdata/hadolint.yaml
 
-      - name: Run integration test 6 - output to file
-        # This step will never fail, but will print out rule violations.
-        uses: ./
-        with:
-          dockerfile: testdata/warning.Dockerfile
-          format: sarif
-          output-file: report.sarif
+      #- name: Run integration test 6 - output to file
+      #  # This step will never fail, but will print out rule violations.
+      #  uses: ./
+      #  with:
+      #    dockerfile: testdata/warning.Dockerfile
+      #    format: sarif
+      #    output-file: report.sarif
 
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
