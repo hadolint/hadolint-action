@@ -27,16 +27,19 @@ if [ -n "$HADOLINT_OUTPUT" ]; then
   OUTPUT=" | tee $HADOLINT_OUTPUT"
 fi
 
+FAILED=0
 if [ "$HADOLINT_RECURSIVE" = "true" ]; then
   shopt -s globstar
 
   filename="${!#}"
   flags="${@:1:$#-1}"
 
-  hadolint $HADOLINT_CONFIG $flags **/$filename $OUTPUT
+  hadolint $HADOLINT_CONFIG $flags **/$filename $OUTPUT || FAILED=1
 else
   # shellcheck disable=SC2086
-  hadolint $HADOLINT_CONFIG "$@" $OUTPUT
+  hadolint $HADOLINT_CONFIG "$@" $OUTPUT || FAILED=1
 fi
 
 [ -z "$HADOLINT_OUTPUT" ] || echo "Hadolint output saved to: $HADOLINT_OUTPUT"
+
+exit $FAILED
