@@ -82,7 +82,7 @@ jobs:
         with:
           dockerfile: testdata/warning.Dockerfile
           format: sarif
-          output-file: /report.sarif
+          output-file: report.sarif
 
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
