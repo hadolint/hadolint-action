@@ -48,7 +48,7 @@ steps:
 |                    | severity                                  |                  |
 | override-style     | List of rules to treat with 'style'       |                  |
 |                    | severity                                  |                  |
-| ignore             | Space separated list of Hadolint rules to | <none>           |
+| ignore             | Comma-separated list of Hadolint rules to | <none>           |
 |                    | ignore.                                   |                  |
 | trusted-registries | List of urls of trusted registries        |                  |
 
