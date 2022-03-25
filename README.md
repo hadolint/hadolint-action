@@ -6,7 +6,6 @@
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=for-the-badge)](http://commitizen.github.io/cz-cli/)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=for-the-badge)](https://github.com/semantic-release/semantic-release?style=for-the-badge)
-
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/hadolint/hadolint-action/CI?style=for-the-badge)](https://github.com/hadolint/hadolint-action/action)
 
 ## Usage
@@ -23,34 +22,23 @@ steps:
 
 ## Inputs
 
-| Name               | Description                               | Default          |
-|------------------- |------------------------------------------ |----------------- |
-| dockerfile         | The path to the Dockerfile to be tested   | ./Dockerfile     |
-| recursive          | Search for specified dockerfile           | false            |
-|                    | recursively, from the project root        |                  |
-| config             | Custom path to a Hadolint config file     | ./.hadolint.yaml |
-| output-file        | A sub-path where to save the              |                  |
-|                    | output as a file to                       |                  |
-| no-color           | Don't create colored output               |                  |
-| no-fail            | Never fail the action                     |                  |
-| verbose            | Output more information                   |                  |
-| format             | The output format. One of [tty \| json \| | tty              |
-|                    | checkstyle \| codeclimate \|              |                  |
-|                    | gitlab_codeclimate \| codacy \| sarif]    |                  |
-| failure-threshold  | Rule severity threshold for pipeline      | info             |
-|                    | failure. One of [error \| warning \|      |                  |
-|                    | info \| style \| ignore]                  |                  |
-| override-error     | List of rules to treat with 'error'       |                  |
-|                    | severity                                  |                  |
-| override-warning   | List of rules to treat with 'warning'     |                  |
-|                    | severity                                  |                  |
-| override-info      | List of rules to treat with 'info'        |                  |
-|                    | severity                                  |                  |
-| override-style     | List of rules to treat with 'style'       |                  |
-|                    | severity                                  |                  |
-| ignore             | Space separated list of Hadolint rules to | <none>           |
-|                    | ignore.                                   |                  |
-| trusted-registries | List of urls of trusted registries        |                  |
+| Name                 | Description                                                                                                                             | Default            |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------|--------------------|
+| `dockerfile`         | The path to the Dockerfile to be tested                                                                                                 | `./Dockerfile`     |
+| `recursive`          | Search for specified dockerfile </br> recursively, from the project root                                                                | `false`            |
+| `config`             | Custom path to a Hadolint config file                                                                                                   | `./.hadolint.yaml` |
+| `output-file`        | A sub-path where to save the </br> output as a file to                                                                                  |                    |
+| `no-color`           | Don't create colored output (`true`/`false`)                                                                                            |                    |
+| `no-fail`            | Never fail the action (`true`/`false`)                                                                                                  |                    |
+| `verbose`            | Output more information (`true`/`false`)                                                                                                |                    |
+| `format`             | The output format. One of [`tty` \| `json` \| </br> `checkstyle` \| `codeclimate` \| </br> `gitlab_codeclimate` \| `codacy` \| `sarif`] | `tty`              |
+| `failure-threshold`  | Rule severity threshold for pipeline </br> failure. One of [`error` \| `warning` \| </br>  `info` \| `style` \| `ignore`]               | `info`             |
+| `override-error`     | Comma separated list of rules to treat with `error` severity                                                                            |                    |
+| `override-warning`   | Comma separated list of rules to treat with `warning` severity                                                                          |                    |
+| `override-info`      | Comma separated list of rules to treat with `info` severity                                                                             |                    |
+| `override-style`     | Comma separated list of rules to treat with `style` severity                                                                            |                    |
+| `ignore`             | Comma separated list of Hadolint rules to ignore.                                                                                       | <none>             |
+| `trusted-registries` | Comma separated list of urls of trusted registries                                                                                      |                    |
 
 ## Hadolint Configuration
 
