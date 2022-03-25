@@ -6,7 +6,6 @@
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=for-the-badge)](http://commitizen.github.io/cz-cli/)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=for-the-badge)](https://github.com/semantic-release/semantic-release?style=for-the-badge)
-
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/hadolint/hadolint-action/CI?style=for-the-badge)](https://github.com/hadolint/hadolint-action/action)
 
 ## Usage
@@ -29,17 +28,17 @@ steps:
 | `recursive`          | Search for specified dockerfile </br> recursively, from the project root                                                                | `false`            |
 | `config`             | Custom path to a Hadolint config file                                                                                                   | `./.hadolint.yaml` |
 | `output-file`        | A sub-path where to save the </br> output as a file to                                                                                  |                    |
-| `no-color`           | Don't create colored output                                                                                                             |                    |
-| `no-fail`            | Never fail the action                                                                                                                   |                    |
-| `verbose`            | Output more information                                                                                                                 |                    |
+| `no-color`           | Don't create colored output (`true`/`false`)                                                                                            |                    |
+| `no-fail`            | Never fail the action (`true`/`false`)                                                                                                  |                    |
+| `verbose`            | Output more information (`true`/`false`)                                                                                                |                    |
 | `format`             | The output format. One of [`tty` \| `json` \| </br> `checkstyle` \| `codeclimate` \| </br> `gitlab_codeclimate` \| `codacy` \| `sarif`] | `tty`              |
 | `failure-threshold`  | Rule severity threshold for pipeline </br> failure. One of [`error` \| `warning` \| </br>  `info` \| `style` \| `ignore`]               | `info`             |
-| `override-error`     | List of rules to treat with `error` severity                                                                                            |                    |
-| `override-warning`   | List of rules to treat with `warning` severity                                                                                          |                    |
-| `override-info`      | List of rules to treat with `info` severity                                                                                             |                    |
-| `override-style`     | List of rules to treat with `style` severity                                                                                            |                    |
+| `override-error`     | Comma separated list of rules to treat with `error` severity                                                                            |                    |
+| `override-warning`   | Comma separated list of rules to treat with `warning` severity                                                                          |                    |
+| `override-info`      | Comma separated list of rules to treat with `info` severity                                                                             |                    |
+| `override-style`     | Comma separated list of rules to treat with `style` severity                                                                            |                    |
 | `ignore`             | Comma separated list of Hadolint rules to ignore.                                                                                       | <none>             |
-| `trusted-registries` | List of urls of trusted registries                                                                                                      |                    |
+| `trusted-registries` | Comma separated list of urls of trusted registries                                                                                      |                    |
 
 ## Hadolint Configuration
 
