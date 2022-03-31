@@ -53,7 +53,7 @@ Example to create a comment in a PR:
   with:
     script: |
       const output = `
-      #### Hadolint: \`${{ steps.hadolint5.outcome }}\`
+      #### Hadolint: \`${{ steps.hadolint.outcome }}\`
       \`\`\`
       ${process.env.HADOLINT_RESULTS}
       \`\`\`
