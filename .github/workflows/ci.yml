@@ -90,7 +90,7 @@ jobs:
             #### Hadolint: \`${{ steps.hadolint.outcome }}\`
             _output from integration test 5_
             \`\`\`
-            ${{ steps.hadolint5.outputs.results }}
+            ${process.env.HADOLINT_RESULTS}
             \`\`\`
             `;
 
