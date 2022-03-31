@@ -81,6 +81,26 @@ jobs:
         # This step will never fail, but will print out the results from step5
         run: echo "${{ steps.hadolint5.outputs.results }}"
 
+      - name: Update Pull Request
+        uses: actions/github-script@v6
+        if: github.event_name == 'pull_request'
+        with:
+          script: |
+            const output = `
+            #### Hadolint: \`${{ steps.hadolint.outcome }}\`
+            _output from integration test 5_
+            \`\`\`
+            ${{ steps.hadolint5.outputs.results }}
+            \`\`\`
+            `;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+
       #- name: Run integration test 6 - output to file
       #  # This step will never fail, but will print out rule violations.
       #  uses: ./
