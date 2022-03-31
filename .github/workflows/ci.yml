@@ -71,10 +71,15 @@ jobs:
 
       - name: Run integration test 5 - output format
         # This step will never fail, but will print out rule violations.
+        id: hadolint5
         uses: ./
         with:
           dockerfile: testdata/warning.Dockerfile
           config: testdata/hadolint.yaml
+
+      - name: Run integration test 6 - verify results output parameter
+        # This step will never fail, but will print out the results from step5
+        run: echo "${{ steps.hadolint5.outputs.results }}"
 
       #- name: Run integration test 6 - output to file
       #  # This step will never fail, but will print out rule violations.

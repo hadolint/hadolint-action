@@ -40,6 +40,33 @@ steps:
 | `ignore`             | Comma separated list of Hadolint rules to ignore.                                                                                       | <none>             |
 | `trusted-registries` | Comma separated list of urls of trusted registries                                                                                      |                    |
 
+## Output
+
+The Action will store results in an environment variable that can be used in other steps in a workflow.
+
+Example to create a comment in a PR:
+
+```
+- name: Update Pull Request
+  uses: actions/github-script@v6
+  if: github.event_name == 'pull_request'
+  with:
+    script: |
+      const output = `
+      #### Hadolint: \`${{ steps.hadolint.outcome }}\`
+      \`\`\`
+      ${process.env.HADOLINT_RESULTS}
+      \`\`\`
+      `;
+
+      github.rest.issues.createComment({
+        issue_number: context.issue.number,
+        owner: context.repo.owner,
+        repo: context.repo.repo,
+        body: output
+      })
+```
+
 ## Hadolint Configuration
 
 To configure Hadolint (for example ignore rules), you can create an `.hadolint.yaml` file in the root of your repository. Please check the Hadolint [documentation](https://github.com/hadolint/hadolint#configure).

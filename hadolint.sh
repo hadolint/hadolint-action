@@ -23,26 +23,30 @@ if [ -z "$HADOLINT_TRUSTED_REGISTRIES" ]; then
   unset HADOLINT_TRUSTED_REGISTRIES;
 fi
 
-OUTPUT=
-if [ -n "$HADOLINT_OUTPUT" ]; then
-  if [ -f "$HADOLINT_OUTPUT" ]; then
-    HADOLINT_OUTPUT="$TMP_FOLDER/$HADOLINT_OUTPUT"
-  fi
-  OUTPUT=" | tee $HADOLINT_OUTPUT"
-fi
-
-FAILED=0
 if [ "$HADOLINT_RECURSIVE" = "true" ]; then
   shopt -s globstar
 
   filename="${!#}"
   flags="${@:1:$#-1}"
 
-  hadolint $HADOLINT_CONFIG $flags **/$filename $OUTPUT || FAILED=1
+  RESULTS=$(hadolint $HADOLINT_CONFIG $flags **/$filename)
 else
   # shellcheck disable=SC2086
-  hadolint $HADOLINT_CONFIG "$@" $OUTPUT || FAILED=1
+  RESULTS=$(hadolint $HADOLINT_CONFIG "$@")
 fi
+FAILED=$?
+
+if [ -n "$HADOLINT_OUTPUT" ]; then
+  if [ -f "$HADOLINT_OUTPUT" ]; then
+    HADOLINT_OUTPUT="$TMP_FOLDER/$HADOLINT_OUTPUT"
+  fi
+  echo "$RESULTS" > $HADOLINT_OUTPUT
+fi
+
+RESULTS="${RESULTS//$'\\n'/''}"
+echo "::set-output name=results::$RESULTS"
+
+{ echo "HADOLINT_RESULTS<<EOF"; echo "$RESULTS"; echo "EOF"; } >> $GITHUB_ENV
 
 [ -z "$HADOLINT_OUTPUT" ] || echo "Hadolint output saved to: $HADOLINT_OUTPUT"
 
