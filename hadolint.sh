@@ -36,14 +36,15 @@ else
 fi
 FAILED=$?
 
-echo "::set-output name=results::$RESULTS"
-
 if [ -n "$HADOLINT_OUTPUT" ]; then
   if [ -f "$HADOLINT_OUTPUT" ]; then
     HADOLINT_OUTPUT="$TMP_FOLDER/$HADOLINT_OUTPUT"
   fi
   echo "$RESULTS" > $HADOLINT_OUTPUT
 fi
+
+RESULTS="${RESULTS//\`/\\\`}"
+echo "::set-output name=results::$RESULTS"
 
 [ -z "$HADOLINT_OUTPUT" ] || echo "Hadolint output saved to: $HADOLINT_OUTPUT"
 
