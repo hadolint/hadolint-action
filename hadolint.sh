@@ -43,7 +43,7 @@ if [ -n "$HADOLINT_OUTPUT" ]; then
   echo "$RESULTS" > $HADOLINT_OUTPUT
 fi
 
-RESULTS="${RESULTS//\`/\\\`}"
+RESULTS="${RESULTS//$'\\n'/''}"
 echo "::set-output name=results::$RESULTS"
 
 [ -z "$HADOLINT_OUTPUT" ] || echo "Hadolint output saved to: $HADOLINT_OUTPUT"
