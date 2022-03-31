@@ -46,6 +46,8 @@ fi
 RESULTS="${RESULTS//$'\\n'/''}"
 echo "::set-output name=results::$RESULTS"
 
+{ echo "HADOLINT_RESULTS<<EOF"; echo "$RESULTS"; echo "EOF"; } >> $GITHUB_ENV
+
 [ -z "$HADOLINT_OUTPUT" ] || echo "Hadolint output saved to: $HADOLINT_OUTPUT"
 
 exit $FAILED
