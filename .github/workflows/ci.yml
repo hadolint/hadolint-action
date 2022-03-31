@@ -87,7 +87,7 @@ jobs:
         with:
           script: |
             const output = `
-            #### Hadolint: \`${{ steps.hadolint.outcome }}\`
+            #### Hadolint: \`${{ steps.hadolint5.outcome }}\`
             _output from integration test 5_
             \`\`\`
             ${process.env.HADOLINT_RESULTS}
