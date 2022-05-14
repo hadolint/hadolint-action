@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Set essential environment variables in the container
+export {PWD,HOME}=$(pwd)
+
 # The problem-matcher definition must be present in the repository
 # checkout (outside the Docker container running hadolint). We copy
 # problem-matcher.json to the home folder.
@@ -16,7 +19,7 @@ trap cleanup EXIT
 echo "::add-matcher::$HOME/problem-matcher.json"
 
 if [ -n "$HADOLINT_CONFIG" ]; then
-  HADOLINT_CONFIG="-c ${HADOLINT_CONFIG}"
+  HADOLINT_CONFIG="-c ${PWD}/${HADOLINT_CONFIG}"
 fi
 
 if [ -z "$HADOLINT_TRUSTED_REGISTRIES" ]; then

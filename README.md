@@ -26,7 +26,7 @@ steps:
 |----------------------|-----------------------------------------------------------------------------------------------------------------------------------------|--------------------|
 | `dockerfile`         | The path to the Dockerfile to be tested                                                                                                 | `./Dockerfile`     |
 | `recursive`          | Search for specified dockerfile </br> recursively, from the project root                                                                | `false`            |
-| `config`             | Custom path to a Hadolint config file                                                                                                   | `./.hadolint.yaml` |
+| `config`             | Custom path to a Hadolint config file                                                                                                   |                    |
 | `output-file`        | A sub-path where to save the </br> output as a file to                                                                                  |                    |
 | `no-color`           | Don't create colored output (`true`/`false`)                                                                                            |                    |
 | `no-fail`            | Never fail the action (`true`/`false`)                                                                                                  |                    |
