@@ -78,8 +78,10 @@ jobs:
           config: testdata/hadolint.yaml
 
       - name: Run integration test 6 - verify results output parameter
+        env:
+          STEP_5_OUTPUT: ${{ steps.hadolint5.outputs.results }}
         # This step will never fail, but will print out the results from step5
-        run: echo "${{ steps.hadolint5.outputs.results }}"
+        run: echo "$STEP_5_OUTPUT"
 
       #- name: Run integration test 6 - output to file
       #  # This step will never fail, but will print out rule violations.
