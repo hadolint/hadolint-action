@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-20.04
     container: pipelinecomponents/hadolint:0.10.1
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Run hadolint
         run: hadolint Dockerfile
 
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-20.04
     needs: ["lint"]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Build Docker image
         run: docker build -t $TEST_IMAGE_NAME .
 
@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-20.04
     needs: build-test
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Run integration test 1
         uses: ./
