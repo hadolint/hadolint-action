@@ -44,7 +44,10 @@ if [ -n "$HADOLINT_OUTPUT" ]; then
 fi
 
 RESULTS="${RESULTS//$'\\n'/''}"
-echo "::set-output name=results::$RESULTS"
+
+echo "results<<EOF" >> $GITHUB_OUTPUT
+echo "${RESULTS}" >> $GITHUB_OUTPUT
+echo "EOF" >> $GITHUB_OUTPUT
 
 { echo "HADOLINT_RESULTS<<EOF"; echo "$RESULTS"; echo "EOF"; } >> $GITHUB_ENV
 
