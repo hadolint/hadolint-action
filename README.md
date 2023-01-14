@@ -14,8 +14,8 @@ Add the following step to your workflow configuration:
 
 ```yml
 steps:
-  - uses: actions/checkout@v2 
-  - uses: hadolint/hadolint-action@v2.1.0
+  - uses: actions/checkout@v3
+  - uses: hadolint/hadolint-action@v3.0.0
     with:
       dockerfile: Dockerfile
 ```
