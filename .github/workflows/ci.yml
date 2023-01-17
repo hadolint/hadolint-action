@@ -96,7 +96,7 @@ jobs:
     needs: integration-tests
     steps:
       - uses: actions/checkout@v2
-      - uses: cycjimmy/semantic-release-action@v2
+      - uses: cycjimmy/semantic-release-action@v3
         with:
           extra_plugins: |
             @semantic-release/git
