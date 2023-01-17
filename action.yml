@@ -18,7 +18,7 @@ inputs:
   output-file:
     required: false
     description: 'The path where to save the linting results to'
-    default:
+    default: "/dev/stdout"
 
   # standart hadolint options:
   no-color:
