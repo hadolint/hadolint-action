@@ -18,12 +18,11 @@ inputs:
   output-file:
     required: false
     description: 'The path where to save the linting results to'
-    default:
+    default: "/dev/stdout"
   results-to-console:
     required: false
     description: 'The flag to print Hadolint results to console'
     default: false
-
   # standart hadolint options:
   no-color:
     required: false
