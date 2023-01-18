@@ -79,7 +79,23 @@ jobs:
 
       - name: Run integration test 6 - verify results output parameter
         # This step will never fail, but will print out the results from step5
-        run: echo "${{ steps.hadolint5.outputs.results }}"
+        env:
+          results: ${{ steps.hadolint5.outputs.results }}
+        run: echo "$results"
+
+      - name: Run integration test 7 - set recursive
+        uses: ./
+        with:
+          dockerfile: "*Dockerfile"
+          failure-threshold: error
+          recursive: true
+
+      - name: Run integration test 8 - print results to console
+        uses: ./
+        with:
+          dockerfile: testdata/warning.Dockerfile
+          failure-threshold: error
+          results-to-console: true
 
       #- name: Run integration test 6 - output to file
       #  # This step will never fail, but will print out rule violations.
