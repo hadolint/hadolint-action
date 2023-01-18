@@ -19,10 +19,7 @@ inputs:
     required: false
     description: 'The path where to save the linting results to'
     default: "/dev/stdout"
-  results-to-console:
-    required: false
-    description: 'The flag to print Hadolint results to console'
-    default: false
+
   # standart hadolint options:
   no-color:
     required: false
@@ -98,7 +95,6 @@ runs:
     HADOLINT_CONFIG: ${{ inputs.config }}
     HADOLINT_RECURSIVE: ${{ inputs.recursive }}
     HADOLINT_OUTPUT: ${{ inputs.output-file }}
-    HADOLINT_RESULTS_TO_CONSOLE: ${{ inputs.results-to-console }}
 branding:
   icon: 'layers'
   color: 'purple'
