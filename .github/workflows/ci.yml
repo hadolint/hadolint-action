@@ -18,10 +18,24 @@ jobs:
       - name: Run hadolint
         run: hadolint Dockerfile
 
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run ShellCheck
+        uses: reviewdog/action-shellcheck@v1.16.0
+        with:
+          reporter: github-pr-review
+          fail_on_error: true
+
   build-test:
     name: Build and Test
     runs-on: ubuntu-20.04
-    needs: ["lint"]
+    needs: [ "lint", "shellcheck" ]
     steps:
       - uses: actions/checkout@v3
       - name: Build Docker image
@@ -69,8 +83,9 @@ jobs:
           failure-threshold: error
           format: json
 
-      - name: Run integration test 5 - output format
-        # This step will never fail, but will print out rule violations.
+      - name: Run integration test 5 - config file
+        # This step will never fail, but will print out rule violations
+        # because in config is set the error failure threshold.
         id: hadolint5
         uses: ./
         with:
@@ -79,9 +94,20 @@ jobs:
 
       - name: Run integration test 6 - verify results output parameter
         # This step will never fail, but will print out the results from step5
-        run: echo "${{ steps.hadolint5.outputs.results }}"
+        env:
+          results: ${{ steps.hadolint5.outputs.results }}
+        run: echo "$results"
 
-      #- name: Run integration test 6 - output to file
+      - name: Run integration test 7 - set recursive
+        # This step will never fail, but will print out rule violations
+        # for all the Dockerfiles in repository.
+        uses: ./
+        with:
+          dockerfile: "*Dockerfile"
+          failure-threshold: error
+          recursive: true
+
+      #- name: Run integration test 8 - output to file
       #  # This step will never fail, but will print out rule violations.
       #  uses: ./
       #  with:
