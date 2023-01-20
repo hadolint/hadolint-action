@@ -8,6 +8,11 @@ on:
 env:
   TEST_IMAGE_NAME: hadolint-action:${{github.sha}}
 
+permissions:
+  contents: write
+  issues: write # Used by Release step to update "The automated release is failing" issue
+  pull-requests: write # Used by ShellCheck Action to add comments on PR
+
 jobs:
   lint:
     name: Lint
@@ -21,9 +26,6 @@ jobs:
   shellcheck:
     name: ShellCheck
     runs-on: ubuntu-20.04
-    permissions:
-      contents: read
-      pull-requests: write
     steps:
       - uses: actions/checkout@v3
       - name: Run ShellCheck
@@ -120,8 +122,6 @@ jobs:
     name: Release
     runs-on: ubuntu-20.04
     needs: integration-tests
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v2
       - uses: cycjimmy/semantic-release-action@v3
