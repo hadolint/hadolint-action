@@ -28,10 +28,10 @@ steps:
 | `dockerfile`         | The path to the Dockerfile to be tested                                                                                                 | `./Dockerfile`     |
 | `recursive`          | Search for specified dockerfile </br> recursively, from the project root                                                                | `false`            |
 | `config`             | Custom path to a Hadolint config file                                                                                                   | `./.hadolint.yaml` |
-| `output-file`        | A sub-path where to save the </br> output as a file to                                                                                  |                    |
-| `no-color`           | Don't create colored output (`true`/`false`)                                                                                            |                    |
-| `no-fail`            | Never fail the action (`true`/`false`)                                                                                                  |                    |
-| `verbose`            | Output more information (`true`/`false`)                                                                                                |                    |
+| `output-file`        | A sub-path where to save the </br> output as a file to                                                                                  | `/dev/stdout`      |
+| `no-color`           | Don't create colored output (`true`/`false`)                                                                                            | `false`            |
+| `no-fail`            | Never fail the action (`true`/`false`)                                                                                                  | `false`            |
+| `verbose`            | Output more information (`true`/`false`)                                                                                                | `false`            |
 | `format`             | The output format. One of [`tty` \| `json` \| </br> `checkstyle` \| `codeclimate` \| </br> `gitlab_codeclimate` \| `codacy` \| `sarif`] | `tty`              |
 | `failure-threshold`  | Rule severity threshold for pipeline </br> failure. One of [`error` \| `warning` \| </br>  `info` \| `style` \| `ignore`]               | `info`             |
 | `override-error`     | Comma separated list of rules to treat with `error` severity                                                                            |                    |
