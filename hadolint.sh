@@ -7,10 +7,10 @@ PROBLEM_MATCHER_FILE="/problem-matcher.json"
 if [ -f "$PROBLEM_MATCHER_FILE" ]; then
   cp "$PROBLEM_MATCHER_FILE" "$HOME/"
 fi
-# After the run has finished we remove the problem-matcher.json from
+
+# After the run has finished, we remove the problem-matcher.json from
 # the repository so we don't leave the checkout dirty. We also remove
 # the matcher so it won't take effect in later steps.
-# shellcheck disable=SC2317
 cleanup() {
   echo "::remove-matcher owner=brpaz/hadolint-action::"
 }
@@ -34,21 +34,35 @@ if [ "$HADOLINT_RECURSIVE" = "true" ]; then
   filename="${!#}"
   flags="${*:1:$#-1}"
 
-  RESULTS=$(eval "$COMMAND $flags" -- **/"$filename")
+  # Check if filename and directory name are the same
+  if [ "$(basename "$filename")" != "$(dirname "$filename")" ]; then
+    # Run hadolint command and save the results to a variable
+    RESULTS=$(eval "$COMMAND $flags" -- **/"$filename")
+
+    # Check if HADOLINT_OUTPUT is specified and save results to file
+    if [ -n "$HADOLINT_OUTPUT" ]; then
+      if [ -f "$HADOLINT_OUTPUT" ]; then
+        HADOLINT_OUTPUT="$TMP_FOLDER/$HADOLINT_OUTPUT"
+      fi
+      echo -n "$RESULTS" >"$HADOLINT_OUTPUT"
+    fi
+  else
+    # Skip the check if filename and directory name are the same
+    RESULTS=""
+  fi
 else
   flags=$*
+  # Run hadolint command and save the results to a variable
   RESULTS=$(eval "$COMMAND" "$flags")
-fi
-FAILED=$?
 
-if [ -n "$HADOLINT_OUTPUT" ]; then
-  if [ -f "$HADOLINT_OUTPUT" ]; then
-    HADOLINT_OUTPUT="$TMP_FOLDER/$HADOLINT_OUTPUT"
+  # Check if HADOLINT_OUTPUT is specified and save results to file
+  if [ -n "$HADOLINT_OUTPUT" ]; then
+    if [ -f "$HADOLINT_OUTPUT" ]; then
+      HADOLINT_OUTPUT="$TMP_FOLDER/$HADOLINT_OUTPUT"
+    fi
+    echo -n "$RESULTS" >"$HADOLINT_OUTPUT"
   fi
-  echo "$RESULTS" >"$HADOLINT_OUTPUT"
 fi
-
-RESULTS="${RESULTS//$'\\n'/''}"
 
 {
   echo "results<<EOF"
