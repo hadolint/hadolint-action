@@ -1,3 +1,4 @@
+---
 name: "CI"
 on:
   push:
@@ -37,7 +38,9 @@ jobs:
   build-test:
     name: Build and Test
     runs-on: ubuntu-20.04
-    needs: [ "lint", "shellcheck" ]
+    needs:
+      - lint
+      - shellcheck
     steps:
       - uses: actions/checkout@v3
       - name: Build Docker image
@@ -55,7 +58,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run integration test 1
+      - name: Run integration test 1 - good Dockerfile
         uses: ./
         with:
           dockerfile: testdata/Dockerfile
@@ -116,6 +119,15 @@ jobs:
       #    dockerfile: testdata/warning.Dockerfile
       #    format: sarif
       #    output-file: report.sarif
+
+      - name: Run integration test 9 - run with no Dockerfiles
+        # This should not fail if no Dockerfiles are found in the path
+        # especially if git change deletes Dockerfile
+        uses: testdata/test_empty_dir
+        with:
+          dockerfile: ""
+          failure-threshold: error
+          recursive: true
 
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
