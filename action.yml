@@ -73,6 +73,10 @@ inputs:
     required: false
     description: 'A comma separated list of trusted registry urls'
     default:
+  working-directory:
+    required: false
+    description: 'Path where you want to start scanning for Dockerfiles'
+    default:
 
 runs:
   using: 'docker'
@@ -91,6 +95,7 @@ runs:
     HADOLINT_OVERRIDE_STYLE: ${{ inputs.override-style }}
     HADOLINT_IGNORE: ${{ inputs.ignore }}
     HADOLINT_TRUSTED_REGISTRIES: ${{ inputs.trusted-registries }}
+    HADOLINT_WORKING_DIRECTORY: ${{ inputs.working-directory }}
 
     HADOLINT_CONFIG: ${{ inputs.config }}
     HADOLINT_RECURSIVE: ${{ inputs.recursive }}

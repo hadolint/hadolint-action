@@ -103,7 +103,7 @@ jobs:
           results: ${{ steps.hadolint5.outputs.results }}
         run: echo "$results"
 
-      - name: Run integration test 7 - set recursive
+      - name: Run integration test 7 - set recursive matching *Dockerfile (warning/info)
         # This step will never fail, but will print out rule violations
         # for all the Dockerfiles in repository.
         uses: ./
@@ -120,14 +120,31 @@ jobs:
       #    format: sarif
       #    output-file: report.sarif
 
-      - name: Run integration test 9 - run with no Dockerfiles
+      - name: Run integration test 9 - set recursive with one matching file (good)
+        # This step will never fail, but will print out rule violations
+        # for all the Dockerfiles in repository.
+        uses: ./
+        with:
+          dockerfile: "*Dockerfile"
+          recursive: true
+          working-directory: testdata/test_good_single_file/
+
+      - name: Run integration test 10 - set recursive with non-matching files
+        # This step will never fail, but will print out rule violations
+        # for all the Dockerfiles in repository.
+        uses: ./
+        with:
+          dockerfile: "*Dockerfile_non_existent"
+          recursive: true
+
+      - name: Run integration test 11 - run with no Dockerfiles
         # This should not fail if no Dockerfiles are found in the path
         # especially if git change deletes Dockerfile
-        uses: testdata/test_empty_dir
+        uses: ./
         with:
-          dockerfile: ""
-          failure-threshold: error
+          dockerfile: "*Dockerfile"
           recursive: true
+          working-directory: testdata/test_empty_dir/
 
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
