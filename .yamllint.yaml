@@ -6,3 +6,5 @@ rules:
     max: 80
     level: warning
   document-start: disable
+  truthy:
+    level: warning

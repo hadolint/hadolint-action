@@ -1,12 +1,23 @@
-- repo: local
-  hooks:
-    - id: lint-dockerfile
-      name: Lint Dockerfile
-      entry: make lint-dockerfile
-      language: system
-      files: \.yml$
-    - id: lint-yaml
-      name: Lint YAML
-      entry: make lint-yaml
-      language: system
-      files: \.yml$
+---
+repos:
+  - repo: local
+    hooks:
+      - id: lint-dockerfile
+        name: Lint Dockerfile
+        entry: make lint-dockerfile
+        language: system
+        files: \.yml$
+
+      - id: lint-yaml
+        name: Lint YAML
+        entry: make lint-yaml
+        language: system
+        files: \.yml$
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.33.0
+    hooks:
+      - id: yamllint
+  - repo: https://github.com/koalaman/shellcheck-precommit
+    rev: v0.9.0
+    hooks:
+      - id: shellcheck
