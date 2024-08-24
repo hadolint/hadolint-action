@@ -4,7 +4,7 @@
       "owner": "brpaz/hadolint-action",
       "pattern": [
         {
-          "regexp": "^(.*):(\\d+)\\s((?:DL|SC)\\d+)\\s(style|info|warning|error):\\s(.*)$",
+          "regexp": "^(.*):(\\d+)\\s((?:DL|SC)\\d+)\\s(?:\\x1b\\[\\d+m)*(style|info|warning|error)(?:\\x1b\\[\\d+m)?:\\s(.*)$",
           "file": 1,
           "line": 2,
           "code": 3,
