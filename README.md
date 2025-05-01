@@ -45,12 +45,14 @@ steps:
 
 The Action will store results in an environment variable that can be used in other steps in a workflow.
 
+Prerequisites:
+- GITHUB_TOKEN should have `pull-requests: write` permissions
 Example to create a comment in a PR:
 
 ```
 - name: Update Pull Request
   uses: actions/github-script@v6
-  if: github.event_name == 'pull_request'
+  if: ${{ !cancelled() && github.event_name == 'pull_request' }}'
   with:
     script: |
       const output = `
@@ -70,11 +72,11 @@ Example to create a comment in a PR:
 
 ## Hadolint Configuration
 
-To configure Hadolint (for example ignore rules), you can create an `.hadolint.yaml` file in the root of your repository. Please check the Hadolint [documentation](https://github.com/hadolint/hadolint#configure).
+To configure Hadolint (for example, ignore rules), you can create a `.hadolint.yaml` file in the root of your repository. Please check the Hadolint [documentation](https://github.com/hadolint/hadolint#configure).
 
 ## 🤝 Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -84,9 +86,9 @@ Contributions are what make the open source community such an amazing place to b
 
 ## 💛 Support the project
 
-If this project was useful to you in some form, We would be glad to have your support. It will help keeping the project alive.
+If this project was useful to you in some form, we would be glad to have your support. It will help keep the project alive.
 
-The sinplest form of support is to give a ⭐️ to this repo.
+The simplest form of support is to give a ⭐️ to this repo.
 
 This project was originally created by [Bruno Paz](https://github.com/sponsors/brpaz) and incorporated into the Hadolint organization. If you appreciate the work done on this action, Bruno would be happy with your [sponsorship](https://github.com/sponsors/brpaz).
 
