@@ -46,9 +46,9 @@ steps:
 The Action will store results in an environment variable that can be used in other steps in a workflow.
 
 Prerequisites:
-- GITHUB_TOKEN should have `pull-requests: write` permissions
-Example to create a comment in a PR:
+- GITHUB_TOKEN should have `pull-requests: write` permissions.
 
+Example to create a comment in a PR:
 ```
 - name: Update Pull Request
   uses: actions/github-script@v6
