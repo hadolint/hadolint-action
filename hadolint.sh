@@ -12,8 +12,8 @@ chmod -R a+rX "${TMP_FOLDER}"
 # the repository so we don't leave the checkout dirty. We also remove
 # the matcher so it won't take effect in later steps.
 cleanup() {
-    echo "::remove-matcher owner=brpaz/hadolint-action::"
-    rm -rf "${TMP_FOLDER}"
+  echo "::remove-matcher owner=brpaz/hadolint-action::"
+  rm -rf "${TMP_FOLDER}"
 }
 trap cleanup EXIT
 
@@ -27,5 +27,7 @@ for i in $HADOLINT_IGNORE; do
   HADOLINT_IGNORE_CMDLINE="${HADOLINT_IGNORE_CMDLINE} --ignore=${i}"
 done
 
+DOCKERFILE_LIST=$(printf '%s ' "$@")
+
 # shellcheck disable=SC2086
-hadolint $HADOLINT_IGNORE_CMDLINE $HADOLINT_CONFIG "$@"
+hadolint $HADOLINT_IGNORE_CMDLINE $HADOLINT_CONFIG $DOCKERFILE_LIST

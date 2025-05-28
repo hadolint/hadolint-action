@@ -4,7 +4,7 @@ author: 'Bruno Paz'
 inputs:
   dockerfile:
     required: false
-    description: 'The path to the Dockerfile to lint'
+    description: 'Path to Dockerfile(s). Provide a single path or multiple paths space-separated (e.g., "Dockerfile path/to/another/Dockerfile").'
     default: 'Dockerfile'
   format:
     required: false
