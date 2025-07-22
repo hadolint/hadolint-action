@@ -16,30 +16,30 @@ permissions:
 jobs:
   lint:
     name: Lint
-    runs-on: ubuntu-20.04
-    container: pipelinecomponents/hadolint:0.10.1
+    runs-on: ubuntu-22.04
+    container: pipelinecomponents/hadolint:0.27.2
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run hadolint
         run: hadolint Dockerfile
 
   shellcheck:
     name: ShellCheck
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run ShellCheck
-        uses: reviewdog/action-shellcheck@v1.16.0
+        uses: reviewdog/action-shellcheck@v1.30.0
         with:
           reporter: github-pr-review
           fail_on_error: true
 
   build-test:
     name: Build and Test
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: [ "lint", "shellcheck" ]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Build Docker image
         run: docker build -t $TEST_IMAGE_NAME .
 
@@ -50,10 +50,10 @@ jobs:
 
   integration-tests:
     name: Integration Tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: build-test
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Run integration test 1
         uses: ./
@@ -120,11 +120,11 @@ jobs:
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     name: Release
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: integration-tests
     steps:
-      - uses: actions/checkout@v2
-      - uses: cycjimmy/semantic-release-action@v3
+      - uses: actions/checkout@v4
+      - uses: cycjimmy/semantic-release-action@v4
         with:
           extra_plugins: |
             @semantic-release/git
