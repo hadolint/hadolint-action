@@ -1,7 +1,7 @@
 {
   "problemMatcher": [
     {
-      "owner": "brpaz/hadolint-action",
+      "owner": "hadolint/hadolint-action",
       "pattern": [
         {
           "regexp": "(.*)\\:(\\d+)\\s(.*)",
