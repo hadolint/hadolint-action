@@ -12,7 +12,7 @@ fi
 # the matcher so it won't take effect in later steps.
 # shellcheck disable=SC2317
 cleanup() {
-  echo "::remove-matcher owner=brpaz/hadolint-action::"
+  echo "::remove-matcher owner=hadolint/hadolint-action::"
 }
 trap cleanup EXIT
 
